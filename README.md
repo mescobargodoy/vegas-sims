@@ -1,3 +1,8 @@
+This repository contains simple python functions to submit VEGAS jobs to condor queue. You need VEGAS installed.
+The purpose of this repository is to keep track of the methods used to process simulation files in order
+to assess the reconstruction of the depth of first interaction using the Image Template Method.
+Only useful in the vhe cluster at UCSC.
+
 Simulation files can be found here `/data_disks/vhe1a/mc/CARE_V6_05Wobble/`.
 
 Try running the following in the terminal first to get the first interaction depth truth:
