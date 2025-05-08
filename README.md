@@ -62,7 +62,7 @@ submit_vaStage4(vaStage2Ouput, config, cuts, output_dir)
 To submit multiple jobs you can do something like this:
 
 ```
-from CondorSubmit import submit_vaStage1, submit_vaStage2
+from CondorSubmit import submit_vaStage1, submit_vaStage2, submit_vaStage4
 
 output_dir = "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2"
 laser = "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/laser/simLaser.root" 
@@ -90,4 +90,27 @@ Once the VEGAS stage 1 is done you can do:
 for file in files:
     submit_vaStage2(file, laser, output_dir)
 
+```
+
+And once VEGAS stage 2 is done you can do:
+```
+config = "/home/vhep/mescob11/VERITAS/VEGAS_ITM_versions/vastage4-s1213_atm21_t1234_config.txt"
+cuts = "/home/vhep/mescob11/VERITAS/VEGAS_ITM_versions/vastage4-s1213_atm21_t1234_cuts.txt"
+output_dir = "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage4"
+
+stg2_files = [
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen0deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen20deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen30deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen35deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen40deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen45deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen50deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen55deg_05wob_200MHz_1.stg2.root",
+    "/data_disks/vhe1a/mescob11/VERITAS/FirstInteractionSims/vegas_outputs/stage2/gamma_V6_CARE_v1.6.2_12_ATM61_zen60deg_05wob_200MHz_1.stg2.root"
+]
+
+
+for vaStage2Output in stg2_files:
+    submit_vaStage4(vaStage2Output, config, cuts, output_dir)
 ```
