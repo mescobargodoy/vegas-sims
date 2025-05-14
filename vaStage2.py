@@ -8,6 +8,7 @@ def create_vaStage2_condor_script(
         vbf,
         laser,  
         output_dir=".", 
+        S_factors="1/0.944,2/0.971,3/1.018,4/0.976"
         ):
     """
     Generates a condor script to run VEGAS stage 2.
@@ -21,6 +22,9 @@ def create_vaStage2_condor_script(
     output_dir : str, optional
         where VEGAS/condor will send outputs and command-line output/error
         by default "."
+    S_factors : str, optional
+        vector-like (as in C/C++) specifying charge correction factor (GT factors)
+        defaults to 2023/2024 winter value
 
     """    
     VEGAS = os.environ.get('VEGAS')
@@ -54,7 +58,7 @@ def create_vaStage2_condor_script(
     script_content = textwrap.dedent(f"""\
     Universe     = vanilla
     Executable   = {exe}
-    Arguments    = -G_SimulationMode=1 {vbf} {vaStage2Output} {laser}
+    Arguments    = -G_SimulationMode=1  -S2A_ScaleCharge={S_factors} {vbf} {vaStage2Output} {laser}
     Requirements = 
     Environment  = "VEGAS={VEGAS}"
     GetEnv       = True
