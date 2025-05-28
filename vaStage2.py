@@ -8,7 +8,7 @@ def create_vaStage2_condor_script(
         vbf,
         laser,  
         output_dir=".", 
-        S_factors="1/0.944,2/0.971,3/1.018,4/0.976"
+        S_factors="1/0.684,2/0.654,3/0.751,4/0.728"
         ):
     """
     Generates a condor script to run VEGAS stage 2.
@@ -58,7 +58,7 @@ def create_vaStage2_condor_script(
     script_content = textwrap.dedent(f"""\
     Universe     = vanilla
     Executable   = {exe}
-    Arguments    = -G_SimulationMode=1  -S2A_ScaleCharge={S_factors} {vbf} {vaStage2Output} {laser}
+    Arguments    = -G_SimulationMode=1 -G_NumEventsToAnalyse=100000 -BCI_BadChannelList=/veritas_data/mc/badPixels/V6_BadChannel.txt -S2A_ScaleCharge={S_factors} {vbf} {vaStage2Output} {laser}
     Requirements = 
     Environment  = "VEGAS={VEGAS}"
     GetEnv       = True

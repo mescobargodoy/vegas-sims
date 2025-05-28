@@ -19,7 +19,9 @@ def submit_job(script_path):
 
 def submit_vaStage1(
         vbf,
-        output_dir="."
+        output_dir=".",
+        T_factors="1/0.742,2/0.665,3/0.735,4/0.701",
+        G_factors="1/0.922,2/0.984,3/1.022,4/1.039",
     ):
     """
     Submits a condor script to  queue
@@ -36,7 +38,7 @@ def submit_vaStage1(
         where SLURM will send command-line output/error, by default "."
 
     """ 
-    vaStage1_condor = create_vaStage1_condor_script(vbf, output_dir)
+    vaStage1_condor = create_vaStage1_condor_script(vbf, output_dir, T_factors, G_factors)
     
     submit_job(vaStage1_condor)
 
@@ -44,7 +46,8 @@ def submit_vaStage1(
 def submit_vaStage2(
         vbf, 
         laser, 
-        output_dir="."
+        output_dir=".",
+        S_factors="1/0.684,2/0.654,3/0.751,4/0.728"
         ):
     
     """
@@ -81,7 +84,7 @@ def submit_vaStage2(
     if not os.path.exists(vaStage2Output):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), f"{vaStage2Output}") 
 
-    vaStage2_condor = create_vaStage2_condor_script(vbf, laser, output_dir)
+    vaStage2_condor = create_vaStage2_condor_script(vbf, laser, output_dir, S_factors)
 
     submit_job(vaStage2_condor)
 
